@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 
 
+# path: Path object pointing to the file to be hashed.
 def sha256_file(path: Path) -> str:
     """Compute the SHA-256 hash of a file."""
     h = hashlib.sha256()
