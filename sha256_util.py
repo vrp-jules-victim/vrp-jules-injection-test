@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Utility for computing SHA-256 hashes of files."""
+"""Utility module for computing SHA-256 hashes of files.
+
+This module provides functions and a command-line interface to compute
+SHA-256 checksums for specified files.
+"""
 
 import hashlib
 import sys
