@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Usage: pytest test_sha256_util.py
 """Tests for sha256_util."""
 
 import hashlib
