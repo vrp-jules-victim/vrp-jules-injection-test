@@ -6,8 +6,11 @@ import sys
 from pathlib import Path
 
 
-def sha256_file(path: Path) -> str:
+def sha256_file(path: Path | str) -> str:
     """Compute the SHA-256 hash of a file."""
+    path = Path(path)
+    if path.is_dir():
+        raise ValueError(f"Expected a file path, but '{path}' is a directory.")
     h = hashlib.sha256()
     with open(path, "rb") as f:
         for chunk in iter(lambda: f.read(65536), b""):
