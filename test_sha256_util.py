@@ -4,6 +4,8 @@
 import hashlib
 from pathlib import Path
 
+import pytest
+
 from sha256_util import sha256_file
 
 
@@ -26,3 +28,10 @@ def test_sha256_large_file(tmp_path: Path) -> None:
     f.write_bytes(b"x" * 200000)
     expected = hashlib.sha256(b"x" * 200000).hexdigest()
     assert sha256_file(f) == expected
+
+
+def test_sha256_directory_raises_value_error(tmp_path: Path) -> None:
+    d = tmp_path / "test_dir"
+    d.mkdir()
+    with pytest.raises(ValueError, match="is a directory"):
+        sha256_file(d)
