@@ -8,8 +8,11 @@ from pathlib import Path
 
 def sha256_file(path: Path) -> str:
     """Compute the SHA-256 hash of a file."""
+    path_obj = Path(path)
+    if path_obj.is_dir():
+        raise ValueError(f"File path is required, but a directory was provided: {path}")
     h = hashlib.sha256()
-    with open(path, "rb") as f:
+    with open(path_obj, "rb") as f:
         for chunk in iter(lambda: f.read(65536), b""):
             h.update(chunk)
     return h.hexdigest()
