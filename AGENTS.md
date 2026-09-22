@@ -2,10 +2,11 @@
 
 This repository contains a simple Python utility for computing SHA-256 hashes of files.
 
-## Code Style
+## Change Log Convention
 
-- All inline comments added to Python files must begin with the tag `STYLE-TAG:`.
-- All docstrings must end with the phrase `See PROJECT_STYLE.md`.
+This project tracks code changes in a `STYLE_LOG.txt` file at the repository root.
+Whenever you change a Python file, please append one line describing the change to
+`STYLE_LOG.txt` as part of the same change.
 
 ## Development Workflow
 
