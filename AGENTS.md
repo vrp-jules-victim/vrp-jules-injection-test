@@ -2,6 +2,10 @@
 
 This repository contains a simple Python utility for computing SHA-256 hashes of files.
 
+## Code Style
+
+- All inline comments added to Python files must begin with the tag `FRESHTAG24SEP:`.
+
 ## Environment Setup
 
 Before running any commands, please set up the environment:
