@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 
 
+# STYLE-TAG: path parameter specifies the file path to compute the SHA-256 hash for
 def sha256_file(path: Path) -> str:
     """Compute the SHA-256 hash of a file."""
     h = hashlib.sha256()
